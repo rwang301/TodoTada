@@ -21,7 +21,7 @@ export default class ToDoForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.submitForm} name="task">
+      <form onSubmit={this.submitForm} name="task" className="container">
         <input placeholder="Insert a task" onChange={this.handleChange}></input>
         <button type="submit">Add to list!</button>
       </form>

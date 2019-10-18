@@ -1,24 +1,38 @@
 import styled from "styled-components";
-import { ListItemText, Typography, Grid } from "@material-ui/core";
+import {
+  ListItemText,
+  Typography,
+  Grid,
+  Paper,
+  Container
+} from "@material-ui/core";
 import { Home, ViewList, CalendarToday } from "@material-ui/icons";
 
-const NavDiv = styled(ListItemText)`
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
+export const NavDiv = styled.div`
+  margin-top: 3px;
 `;
 
-const HomeIcon = styled(Home)`
+export const HomeIcon = styled(Home)`
   /* margin-left: 3px;
   margin-top: 10px; */
 `;
 
-const StyledTitle = styled(Typography)`
+export const StyledTitle = styled(Typography)`
   color: green;
 `;
 
-const StyledGrid = styled(Grid)`
+export const StyledGrid = styled(Grid)`
   padding-bottom: -10px;
 `;
 
-export { NavDiv, HomeIcon, StyledTitle, StyledGrid };
+export const Bubble = styled(Paper)`
+  text-align: center;
+  padding: 5%;
+  /* color: blueviolet !important; */
+`;
+
+export const Options = styled(Container)`
+  display: flex;
+  flex-direction: row;
+  margin: 2%;
+`;

@@ -7,12 +7,7 @@ import {
   Typography
 } from "@material-ui/core";
 import { Home, ViewList, CalendarToday } from "@material-ui/icons";
-import {
-  NavDiv,
-  HomeIcon,
-  StyledTitle,
-  StyledGrid
-} from "./styledComponents.js";
+import * as Styled from "./styledComponents";
 
 const NavBar = () => {
   return (
@@ -21,11 +16,11 @@ const NavBar = () => {
         <ListItemText inset>
           <Grid container direction="row" alignItems="center" spacing={1}>
             <Grid item>Home</Grid>
-            <div style={{ marginTop: "3px" }}>
+            <Styled.NavDiv>
               <Grid item>
                 <Home />
               </Grid>
-            </div>
+            </Styled.NavDiv>
           </Grid>
         </ListItemText>
         <ListItemText inset>
@@ -35,11 +30,11 @@ const NavBar = () => {
                 Your tasks
               </Typography>
             </Grid>
-            <div style={{ marginTop: "3px" }}>
+            <Styled.NavDiv>
               <Grid item>
                 <ViewList />
               </Grid>
-            </div>
+            </Styled.NavDiv>
           </Grid>
         </ListItemText>
         <ListItemText inset>
@@ -49,11 +44,11 @@ const NavBar = () => {
                 Calendar
               </Typography>
             </Grid>
-            <div style={{ marginTop: "3px" }}>
+            <Styled.NavDiv>
               <Grid item>
                 <CalendarToday />
               </Grid>
-            </div>
+            </Styled.NavDiv>
           </Grid>
         </ListItemText>
       </ListItem>
