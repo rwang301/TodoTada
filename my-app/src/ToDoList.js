@@ -7,10 +7,12 @@ import Toolbar from "@material-ui/core/Toolbar";
 import NavBar from "./NavBar.js";
 import OptionBar from "./OptionBar";
 import Background from "./images/background.jpg";
+import FormModal from "./FormModal";
 
 class ToDoList extends React.Component {
   state = {
-    tasks: []
+    tasks: [],
+    showModal: false
   };
 
   addTask = task => {
@@ -26,6 +28,20 @@ class ToDoList extends React.Component {
     });
   };
 
+  openModal = () => {
+    console.log("hi from the parent");
+    this.setState({
+      showModal: true
+    });
+  };
+
+  closeModal = () => {
+    console.log("hi from the parent2222");
+    this.setState({
+      showModal: false
+    });
+  };
+
   render() {
     return (
       <div>
@@ -35,7 +51,8 @@ class ToDoList extends React.Component {
             <NavBar />
           </Toolbar>
         </AppBar>
-        <OptionBar />
+        <OptionBar openModal={this.openModal} />
+        <FormModal show={this.state.showModal} />
         <ToDoForm addTask={this.addTask} />
         {this.individualTasks()}
       </div>

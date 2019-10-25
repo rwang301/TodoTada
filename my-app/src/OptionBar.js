@@ -18,6 +18,7 @@ const styles = {
     border: "1px solid #2f5487"
   }
 };
+
 class OptionBar extends React.Component {
   render() {
     const { classes } = this.props;
@@ -25,7 +26,10 @@ class OptionBar extends React.Component {
     return (
       <Styled.Options>
         <Grid xs={6}>
-          <Styled.Bubble className={classes.bubbleOne}>
+          <Styled.Bubble
+            className={classes.bubbleOne}
+            onClick={this.props.openModal}
+          >
             <Typography>Add a task for today</Typography>
           </Styled.Bubble>
         </Grid>
