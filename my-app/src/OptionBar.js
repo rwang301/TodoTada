@@ -7,7 +7,7 @@ import { border } from "@material-ui/system";
 
 const styles = {
   bubbleOne: {
-    color: "#5cabff",
+    color: "#0033cc",
     // backgroundColor: "blue",
     borderColor: "#2f5487",
     border: "1px solid #2f5487"
@@ -30,12 +30,12 @@ class OptionBar extends React.Component {
             className={classes.bubbleOne}
             onClick={this.props.openModal}
           >
-            <Typography>Add a task for today</Typography>
+            <Typography variant="h6">Add a task for today</Typography>
           </Styled.Bubble>
         </Grid>
         <Grid xs={6}>
           <Styled.Bubble className={classes.bubbleTwo}>
-            <Typography>Add a plan for later on</Typography>
+            <Typography variant="h6">Add a plan for later on</Typography>
           </Styled.Bubble>
         </Grid>
       </Styled.Options>

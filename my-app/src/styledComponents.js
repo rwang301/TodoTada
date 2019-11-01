@@ -7,9 +7,10 @@ import {
   Container
 } from "@material-ui/core";
 import { Home, ViewList, CalendarToday } from "@material-ui/icons";
+import FormModal from "./FormModal";
 
 export const NavDiv = styled.div`
-  margin-top: 3px;
+  margin-top: -3px;
 `;
 
 export const HomeIcon = styled(Home)`
@@ -58,15 +59,23 @@ export const ModalContent = styled.div`
   border: 1px solid #888;
   border-radius: 5px;
   padding: 5%;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 50%; /* Could be more or less, depending on screen size */
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 `;
 
 export const TaskNameWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 100%;
+  width: 100%;
 `;
 
-export const TitleText = styled(Typography)`
-  margin-left: 300px;
+export const AppLogo = styled.img`
+  max-height: 75%;
+  max-width: 100%;
+  padding: 10px;
 `;

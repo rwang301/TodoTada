@@ -29,14 +29,11 @@ class ToDoList extends React.Component {
   };
 
   openModal = () => {
-    console.log("hi from the parent");
     this.setState({
       showModal: true
     });
   };
-
   closeModal = () => {
-    console.log("hi from the parent2222");
     this.setState({
       showModal: false
     });
@@ -52,9 +49,7 @@ class ToDoList extends React.Component {
           </Toolbar>
         </AppBar>
         <OptionBar openModal={this.openModal} />
-        <FormModal show={this.state.showModal} />
-        <ToDoForm addTask={this.addTask} />
-        {this.individualTasks()}
+        <FormModal show={this.state.showModal} closeModal={this.closeModal} />
       </div>
     );
   }
