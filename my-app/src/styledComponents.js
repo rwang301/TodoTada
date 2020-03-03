@@ -79,3 +79,9 @@ export const AppLogo = styled.img`
   max-width: 100%;
   padding: 10px;
 `;
+
+export const Pagetitle = styled(Typography)`
+  position: absolute;
+  left: 5%;
+  top: 23%;
+`;

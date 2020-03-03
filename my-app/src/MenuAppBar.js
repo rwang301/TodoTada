@@ -21,29 +21,57 @@ import * as Styled from "./styledComponents";
 import { Home, ViewList, CalendarToday } from "@material-ui/icons";
 
 const styles = theme => ({
+  root: {
+    flexGrow: 1
+  },
+  grow: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20
+  },
   list: {
     width: 250
+  },
+  spacer: {
+    height: theme.spacing.unit * 8
   }
 });
 
 class ListItemLink extends React.Component {
+  renderLink = itemProps => <Link to={this.props.to} {...itemProps} />;
   render() {
+    const { icon, primary } = this.props;
     return (
       <li>
-        <ListItem button>Ye</ListItem>
+        <ListItem button component={this.renderLink}>
+          <ListItemIcon>{icon}</ListItemIcon>
+          <ListItemText primary={primary} />
+        </ListItem>
       </li>
     );
   }
 }
 
+const dict = {
+  "/home": "Home",
+  "/calendar": "My Calendar",
+  "/goals": "My Goals"
+};
+
 class MenuAppBar extends React.Component {
   state = {
-    drawerStatus: true
+    drawerStatus: false
   };
 
   toggleDrawer = status => {
     this.setState({ drawerStatus: status });
   };
+
+  pathToName(pathToLookup) {
+    return dict[pathToLookup];
+  }
 
   render() {
     const { classes } = this.props;
@@ -52,35 +80,50 @@ class MenuAppBar extends React.Component {
       <div className={classes.list}>
         <Styled.AppLogo src={ToDoIcon} />
         <Divider />
-        <List subheader={<ListSubheader>Today's tasks</ListSubheader>}>
-          <ListItemLink />
-          <ListItemLink />
+        <List onClick={() => this.toggleDrawer(false)}>
+          <ListItemLink to="/home" primary="Home" icon={<Home />} />
+          <ListItemLink
+            to="/calendar"
+            primary="Calendar"
+            icon={<CalendarToday />}
+          />
+          <ListItemLink
+            to="/goals"
+            primary="Goals (Placeholder)"
+            icon={<ViewList />}
+          />
         </List>
       </div>
     );
 
     return (
       <div>
-        <AppBar>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="Menu"
-              onClick={() => this.toggleDrawer(true)}
+        <div className={classes.root}>
+          <AppBar position="fixed">
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="Menu"
+                onClick={() => this.toggleDrawer(true)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Toolbar>
+            <Drawer
+              open={this.state.drawerStatus}
+              onClose={() => this.toggleDrawer(false)}
             >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-          <Drawer
-            open={this.state.drawerStatus}
-            onClose={() => this.toggleDrawer(false)}
-          >
-            {sideList}
-          </Drawer>
-        </AppBar>
+              {sideList}
+            </Drawer>
+            <Styled.Pagetitle variant="h6" color={"inherit"}>
+              {this.pathToName(window.location.pathname)}
+            </Styled.Pagetitle>
+          </AppBar>
+        </div>
+        <div className={classes.spacer}></div>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(MenuAppBar);
+export default withRouter(withStyles(styles)(MenuAppBar));
