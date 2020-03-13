@@ -62,6 +62,12 @@ class HeraclesContent extends React.Component {
     // const LeaderboardSwitch = lazy(() =>
     //   import("./components/LeaderboardSwitch")
     // );
+    const dummyData = [
+      { id: 0, task: "finish app", status: "incomplete" },
+      { id: 0, task: "finish app", status: "incomplete" },
+      { id: 0, task: "finish app", status: "incomplete" },
+      { id: 0, task: "finish app", status: "incomplete" }
+    ];
 
     return (
       <div className="HeraclesContent">

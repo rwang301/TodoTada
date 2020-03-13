@@ -82,6 +82,6 @@ export const AppLogo = styled.img`
 
 export const Pagetitle = styled(Typography)`
   position: absolute;
-  left: 5%;
+  left: 6%;
   top: 23%;
 `;
