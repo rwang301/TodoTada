@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import { Snackbar, SnackbarContent } from "@material-ui/core";
-import * as Styled from "./styledComponents";
+import * as Styled from "../styledComponents";
 import AButton from "react-bootstrap/Button";
 import { Form, Row, Col } from "react-bootstrap";
 

@@ -8,12 +8,14 @@ import {
 import "./App.css";
 import "typeface-roboto";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import MenuAppBar from "./MenuAppBar";
+import MenuAppBar from "./components/MenuAppBar";
 import { SnackbarProvider } from "notistack";
 // import DateFnsUtils from "@date-io/date-fns";
 // import { MuiPickersUtilsProvider } from "material-ui-pickers";
 import { withSnackbar } from "notistack";
 import { withStyles } from "@material-ui/core/styles";
+import TodayForm from "./components/TodayForm";
+import FormModal from "./FormModal";
 
 const engSocTheme = createMuiTheme({
   palette: {
@@ -107,6 +109,7 @@ class HeraclesContent extends React.Component {
               </div>
             </Router>
           </MuiThemeProvider>
+          <FormModal show={true} />
           {/* </SnackbarProvider> */}
         </div>
       </div>

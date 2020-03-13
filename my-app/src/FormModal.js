@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as Styled from "./styledComponents";
-import TodayForm from "./TodayForm";
+import TodayForm from "./components/TodayForm";
 import { Typography } from "@material-ui/core";
 import AButton from "react-bootstrap/Button";
 import { Container, Row, Col } from "react-bootstrap/";

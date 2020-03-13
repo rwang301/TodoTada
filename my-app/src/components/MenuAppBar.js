@@ -16,8 +16,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListIcon from "@material-ui/icons/List";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
-import ToDoIcon from "./images/ToDoIcon.png";
-import * as Styled from "./styledComponents";
+import ToDoIcon from "../images/ToDoIcon.png";
+import * as Styled from "../styledComponents";
 import { Home, ViewList, CalendarToday } from "@material-ui/icons";
 
 const styles = theme => ({

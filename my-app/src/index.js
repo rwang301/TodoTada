@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import * as serviceWorker from "./serviceWorker";
-import ToDoList from "./ToDoList.js";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
