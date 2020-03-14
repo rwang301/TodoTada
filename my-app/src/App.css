@@ -20,3 +20,32 @@
 .App-link {
   color: #09d3ac;
 }
+
+#dashboard-content {
+  text-align: center;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+#dashboard {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.dummy {
+  background-color: blueviolet;
+}
+
+h4.title {
+  margin-top: 30px;
+  padding: 30px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-left: -20px;
+}

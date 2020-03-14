@@ -20,10 +20,10 @@ class TodayForm extends React.Component {
           <Form.Control />
         </Form.Group>
 
-        <Form.Group>
+        {/* <Form.Group>
           <Form.Label>Task Description</Form.Label>
           <Form.Control as="textarea" />
-        </Form.Group>
+        </Form.Group> */}
         <fieldset>
           <Form.Group as={Row}>
             <Form.Label as="legend" column sm={2}>

@@ -15,7 +15,10 @@ import { SnackbarProvider } from "notistack";
 import { withSnackbar } from "notistack";
 import { withStyles } from "@material-ui/core/styles";
 import TodayForm from "./components/TodayForm";
-import FormModal from "./FormModal";
+import FormModal from "./modals/FormModal";
+import HomePage from "./components/HomePage";
+import CalendarPage from "./components/CalendarPage";
+import GoalsPage from "./components/GoalsPage";
 
 const engSocTheme = createMuiTheme({
   palette: {
@@ -64,12 +67,6 @@ class HeraclesContent extends React.Component {
     // const LeaderboardSwitch = lazy(() =>
     //   import("./components/LeaderboardSwitch")
     // );
-    const dummyData = [
-      { id: 0, task: "finish app", status: "incomplete" },
-      { id: 0, task: "finish app", status: "incomplete" },
-      { id: 0, task: "finish app", status: "incomplete" },
-      { id: 0, task: "finish app", status: "incomplete" }
-    ];
 
     return (
       <div className="HeraclesContent">
@@ -98,18 +95,21 @@ class HeraclesContent extends React.Component {
                       )}
                     />
                     {/* <Route path="/dashboard" component={DashboardContent} /> */}
-                    <Route path="/leaderboard" />
-                    <Route path="/side-challenges" />
-                    <Route path="/staff-announcements" />
-                    <Route path="/staff-approvals" />
-                    <Route path="/staff-points" />
-                    <Route path="/staff-leaderboard-toggle" />
+                    <Route path="/home">
+                      <HomePage />
+                    </Route>
+                    <Route path="/calendar">
+                      <CalendarPage />
+                    </Route>
+                    <Route path="/goals">
+                      <GoalsPage />
+                    </Route>
                   </Switch>
                 </Suspense>
               </div>
             </Router>
           </MuiThemeProvider>
-          <FormModal show={true} />
+          {/* <FormModal show={true} /> */}
           {/* </SnackbarProvider> */}
         </div>
       </div>

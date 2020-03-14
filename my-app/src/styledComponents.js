@@ -7,7 +7,7 @@ import {
   Container
 } from "@material-ui/core";
 import { Home, ViewList, CalendarToday } from "@material-ui/icons";
-import FormModal from "./FormModal";
+import FormModal from "./modals/FormModal";
 
 export const NavDiv = styled.div`
   margin-top: -3px;
