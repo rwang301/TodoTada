@@ -66,3 +66,19 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### instructions to run database
+
+To start mongo in the background type: mongod --dbpath /data/db --fork --logpath /dev/null.
+
+### instructions to shutdown mongodb
+
+mongo
+use admin
+db.shutdownServer()
+
+OR
+
+lsof -i:27017
+**_the above will give PID_**
+kill <PID>
