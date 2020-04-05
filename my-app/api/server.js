@@ -13,13 +13,12 @@ var app = express();
 const router = express.Router();
 
 mongoose.connect("mongodb://localhost/todotada"); // this is async
-mongoose.connection
-  .once("open", function() {
-    console.log("Connection has been made, now make fireworks");
-  })
-  .on("error", function(error) {
-    console.log("the error is:@@@", error);
-  });
+let db = mongoose.connection;
+db.once("open", function() {
+  console.log("Connection has been made, now make fireworks");
+}).on("error", function(error) {
+  console.log("the error is:@@@", error);
+});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -47,8 +46,21 @@ router.get("/", (req, res, next) => {
 router.post("/task", (req, res, next) => {
   console.log("Helllo!!!!!!!!");
   const { task_name, priority } = req.body;
+  let task = new Task();
+  task.name = task_name;
+  task.priority = priority;
+  task.progress = "Incomplete";
+  task.save(err => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
 
-  console.log(task_name, priority, "scamming and that swiping");
+router.get("/task", (req, res) => {
+  Task.find((err, data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
 });
 
 // catch 404 and forward to error handler
