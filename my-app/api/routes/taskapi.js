@@ -3,4 +3,7 @@ var router = express.Router();
 router.get("/", function(req, res, next) {
   res.send("shania darmadi");
 });
+router.get("/", function(req, res, next) {
+  res.send("shania darmadi");
+});
 module.exports = router;
