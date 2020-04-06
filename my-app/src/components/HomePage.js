@@ -15,10 +15,18 @@ import DoneIcon from "@material-ui/icons/Done";
 import DeleteIcon from "@material-ui/icons/Delete";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import FormModal from "../modals/FormModal.js";
+import axios from "axios";
 class HomePage extends React.Component {
   state = {
-    showModal: false
+    showModal: false,
+    apiResponse: []
   };
+  componentDidMount() {
+    axios.get("http://localhost:9000/task").then(res => {
+      console.log(res.data.data);
+      this.setState({ apiResponse: res.data.data });
+    });
+  }
   render() {
     return (
       <div className="dashboard-component container">
@@ -26,7 +34,6 @@ class HomePage extends React.Component {
         {this.state.showModal && (
           <FormModal show={true} closeModal={this.hideModal} />
         )}
-
         <Typography className="title" variant="h4">
           Today's Tasks
         </Typography>
@@ -79,22 +86,23 @@ class HomePage extends React.Component {
   }
 
   renderLeaderData() {
-    const dummyData = [
-      {
-        id: 0,
-        task:
-          "Your money lttiel like a yorkie, yeah im going back to the old me",
-        progress: "Incomplete",
-        priority: "High"
-      },
-      { id: 1, task: "Finish App", progress: "Incomplete", priority: "High" },
-      { id: 2, task: "Finish App", progress: "Incomplete", priority: "High" },
-      { id: 3, task: "Finish App", progress: "Incomplete", priority: "High" }
-    ];
-    return dummyData.map(row => {
+    // const dummyData = [
+    //   {
+    //     id: 0,
+    //     task:
+    //       "Your money lttiel like a yorkie, yeah im going back to the old me",
+    //     progress: "Incomplete",
+    //     priority: "High"
+    //   },
+    //   { id: 1, task: "Finish App", progress: "Incomplete", priority: "High" },
+    //   { id: 2, task: "Finish App", progress: "Incomplete", priority: "High" },
+    //   { id: 3, task: "Finish App", progress: "Incomplete", priority: "High" }
+    // ];
+
+    return this.state.apiResponse.map(row => {
       return (
         <TableRow>
-          <TableCell>{row.task}</TableCell>
+          <TableCell>{row.name}</TableCell>
           <TableCell>{row.progress}</TableCell>
           <TableCell>{row.priority}</TableCell>
           <TableCell>

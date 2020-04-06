@@ -17,7 +17,7 @@ class TodayForm extends React.Component {
       <Form>
         <Form.Group>
           <Form.Label>Task Name</Form.Label>
-          <Form.Control />
+          <Form.Control onChange={e => this.props.savingTask(e.target.value)} />
         </Form.Group>
 
         {/* <Form.Group>
@@ -25,30 +25,20 @@ class TodayForm extends React.Component {
           <Form.Control as="textarea" />
         </Form.Group> */}
         <fieldset>
-          <Form.Group as={Row}>
-            <Form.Label as="legend" column sm={2}>
-              Priority
-            </Form.Label>
-            <Col sm={10}>
-              <Form.Check
-                type="radio"
-                label="Low"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios1"
-              />
-              <Form.Check
-                type="radio"
-                label="Medium"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios2"
-              />
-              <Form.Check
-                type="radio"
-                label="High"
-                name="formHorizontalRadios"
-                id="formHorizontalRadios3"
-              />
-            </Col>
+          <Form.Group>
+            <Form.Label>Priority</Form.Label>
+            <Form.Group controlId="formGridState">
+              <Form.Control
+                as="select"
+                placeholder="Choose..."
+                onChange={e => this.props.savingPriority(e.target.value)}
+              >
+                <option>Choose...</option>
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+              </Form.Control>
+            </Form.Group>
           </Form.Group>
         </fieldset>
       </Form>
