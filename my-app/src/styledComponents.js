@@ -8,6 +8,9 @@ import {
 } from "@material-ui/core";
 import { Home, ViewList, CalendarToday } from "@material-ui/icons";
 import FormModal from "./modals/FormModal";
+import DoneIcon from "@material-ui/icons/Done";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 export const NavDiv = styled.div`
   margin-top: -3px;
@@ -84,4 +87,39 @@ export const Pagetitle = styled(Typography)`
   position: absolute;
   left: 6%;
   top: 23%;
+`;
+
+export const DoneButton = styled(DoneIcon)`
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: ${props =>
+    props.currentprogress == "Completed" ? "#bafd9b" : "#ffffff"};
+  cursor: pointer;
+  padding: 3px;
+`;
+
+export const DeleteButton = styled(DeleteForeverIcon)`
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: #ffd0cf;
+  cursor: pointer;
+  padding: 3px;
+  margin-right: 15px;
+`;
+
+export const ProgressButton = styled(TrendingUpIcon)`
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: ${props =>
+    props.currentprogress == "In Progress" ? "#fcf9ae" : "#ffffff"};
+  cursor: pointer;
+  padding: 3px;
+`;
+
+export const TaskName = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  align-items: center;
 `;

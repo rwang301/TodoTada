@@ -16,6 +16,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import FormModal from "../modals/FormModal.js";
 import axios from "axios";
+import * as Styled from "../styledComponents";
 class HomePage extends React.Component {
   state = {
     showModal: false,
@@ -27,6 +28,36 @@ class HomePage extends React.Component {
       this.setState({ apiResponse: res.data.data });
     });
   }
+  finishTask = (taskname, oldprogress) => {
+    //api request
+    console.log(taskname, oldprogress, "all i want for u is perfection");
+    axios.post("http://localhost:9000/finishtask", {
+      task_name: taskname,
+      oldprogress: oldprogress
+    });
+  };
+  progressTask = (taskname, oldprogress) => {
+    //api request
+    console.log(taskname, oldprogress, "all i want for u is perfection");
+    axios.post("http://localhost:9000/progresstask", {
+      task_name: taskname,
+      oldprogress: oldprogress
+    });
+  };
+
+  //LOOK HERE: IMPORTANT NEST IN {}
+  deleteTask = taskname => {
+    //api request
+    console.log(taskname, "deep in my heart");
+    axios.delete("http://localhost:9000/deletetask", {
+      data: { task_name: taskname }
+    });
+  };
+  clearTasks = () => {
+    axios.delete("http://localhost:9000/deletealltasks", {
+      data: {}
+    });
+  };
   render() {
     return (
       <div className="dashboard-component container">
@@ -37,7 +68,7 @@ class HomePage extends React.Component {
         <Typography className="title" variant="h4">
           Today's Tasks
         </Typography>
-        <div style={{ marginBottom: "15px" }}>
+        <div style={{ marginBottom: "30px" }}>
           <Button
             color="primary"
             variant="outlined"
@@ -46,16 +77,20 @@ class HomePage extends React.Component {
           >
             Add Task
           </Button>
-          <Button color="secondary" variant="outlined">
+          <Button
+            color="secondary"
+            variant="outlined"
+            onClick={() => this.clearTasks()}
+          >
             Clear All
           </Button>
         </div>
         <Table id="dashboard-table" aria-label="simple table">
           <colgroup>
-            <col style={{ width: "60%" }} />
-            <col style={{ width: "10%" }} />
-            <col style={{ width: "10%" }} />
+            <col style={{ width: "50%" }} />
             <col style={{ width: "20%" }} />
+            <col style={{ width: "10%" }} />
+            <col style={{ width: "15%" }} />
           </colgroup>
           <TableHead>
             <TableRow>{this.renderLeaderTableHeader()}</TableRow>
@@ -86,30 +121,35 @@ class HomePage extends React.Component {
   }
 
   renderLeaderData() {
-    // const dummyData = [
-    //   {
-    //     id: 0,
-    //     task:
-    //       "Your money lttiel like a yorkie, yeah im going back to the old me",
-    //     progress: "Incomplete",
-    //     priority: "High"
-    //   },
-    //   { id: 1, task: "Finish App", progress: "Incomplete", priority: "High" },
-    //   { id: 2, task: "Finish App", progress: "Incomplete", priority: "High" },
-    //   { id: 3, task: "Finish App", progress: "Incomplete", priority: "High" }
-    // ];
-
     return this.state.apiResponse.map(row => {
       return (
         <TableRow>
-          <TableCell>{row.name}</TableCell>
+          <TableCell>
+            <Styled.TaskName>
+              {" "}
+              <Styled.DeleteButton
+                onClick={() => this.deleteTask(row.name)}
+                currentprogress={row.progress}
+              />
+              {row.name}
+            </Styled.TaskName>
+          </TableCell>
           <TableCell>{row.progress}</TableCell>
           <TableCell>{row.priority}</TableCell>
           <TableCell>
             <div className="buttonContainer">
-              <DoneIcon />
-              <TrendingUpIcon />
-              <DeleteIcon />
+              {/* <DoneIcon
+                style={{ cursor: "pointer" }}
+                onClick={() => this.finishTask(row.name, row.progress)}
+              /> */}
+              <Styled.DoneButton
+                onClick={() => this.finishTask(row.name, row.progress)}
+                currentprogress={row.progress}
+              />
+              <Styled.ProgressButton
+                onClick={() => this.progressTask(row.name, row.progress)}
+                currentprogress={row.progress}
+              />
             </div>
           </TableCell>
         </TableRow>

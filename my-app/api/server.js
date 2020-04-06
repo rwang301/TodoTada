@@ -49,7 +49,7 @@ router.post("/task", (req, res, next) => {
   let task = new Task();
   task.name = task_name;
   task.priority = priority;
-  task.progress = "Incomplete";
+  task.progress = "Not Started";
   task.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
@@ -60,6 +60,55 @@ router.get("/task", (req, res) => {
   Task.find((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
+  });
+});
+
+//update method
+//overwrites
+router.post("/finishtask", (req, res) => {
+  const { task_name, oldprogress } = req.body;
+  Task.findOneAndUpdate(
+    { name: task_name, progress: oldprogress },
+    { name: task_name, progress: "Completed" },
+    err => {
+      if (err) return res.json({ success: false, error: err });
+      return res.json({ success: true });
+    }
+  );
+});
+router.post("/progresstask", (req, res) => {
+  const { task_name, oldprogress } = req.body;
+  Task.findOneAndUpdate(
+    { name: task_name, progress: oldprogress },
+    { name: task_name, progress: "In Progress" },
+    err => {
+      if (err) return res.json({ success: false, error: err });
+      return res.json({ success: true });
+    }
+  );
+});
+
+//delete singular task
+router.delete("/deletetask", (req, res) => {
+  const { task_name } = req.body;
+  console.log(task_name, "shani2");
+  Task.findOne({
+    name: task_name
+  })
+    .remove()
+    .exec();
+});
+
+//delete ALL tasks
+router.delete("/deletealltasks", (req, res) => {
+  Task.deleteMany({}, function(err) {
+    if (err) {
+      res.status(500).send({ error: "Could not clead database..." });
+    } else {
+      res
+        .status(200)
+        .send({ message: "All hasp info was deleted succesfully..." });
+    }
   });
 });
 
